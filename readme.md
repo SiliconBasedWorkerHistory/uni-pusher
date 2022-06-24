@@ -1,0 +1,3 @@
+以project为单位，经过管理员的操作，project获得一个Project-UUID，
+同一project的客户端将加入此project的room，暂时以其uuid为room名，
+project的服务器携带Project-UUID获取Client-UUID，并将此uuid下发给uni-pusher，

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uni-pusher sio-client</title>
+</head>
+<body>
+    
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io();
+
+socket.on("register-result",(d)=>{
+    console.log("register-result",d);
+})
+
+let d = {
+  "uuid": "910963a9-56ab-4610-903d-e3086379796b",
+  "puuid": "452e1708-1f8a-48ea-a5de-c397b1d19953",
+}
+
+socket.on("connect", () => {
+  console.log("connect",socket.connected); // true
+  socket.emit("register",{
+    cuuid:d.uuid,
+    puuid:d.puuid
+  });
+});
+
+socket.on("connect_error",()=>{
+    console.log("connect error");
+})
+
+socket.on("disconnect", () => {
+  console.log("connect",socket.connected); // false
+});
+
+socket.on("from-project-server",d=>{
+  console.log("from-project-server",d);
+})
+</script>
+</html>

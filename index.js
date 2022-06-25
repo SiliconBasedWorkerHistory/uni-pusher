@@ -9,6 +9,12 @@ const { io } = require("./bin/socketio");
 const Project = require("./model/project");
 const Client = require("./model/client");
 
+let uptimestamp = Date.now();
+
+app.get("/api/admin/uptime",(req,res,next)=>{
+    res.json({uptime:uptimestamp});
+});
+
 // 供 项目服务器 创建新的 client
 app.post("/new-client",(req,res,next)=>{
     let puuid = req.body.puuid;
@@ -30,6 +36,10 @@ app.post("/new-client",(req,res,next)=>{
         console.log("api project new-client",e);
     });
 });
+
+app.post("/api/admin/socket/count",(req,res,next)=>{
+    res.json200({count:io.engine.clientsCount})
+})
 
 app.post("/api/project/push/client", (req, res, next) => {
     let cuuid = req.body.cuuid;

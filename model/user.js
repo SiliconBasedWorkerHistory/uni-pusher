@@ -1,20 +1,17 @@
 const sequelize = require("../bin/sequelize");
 const { DataTypes, Model, Sequelize } = require("sequelize");
 
-class Project extends Model { }
+class User extends Model { }
 
-Project.init(
+User.init(
   {
     uuid: {
       type: DataTypes.UUIDV4,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4
     },
-    uuuid:{
-      type: DataTypes.UUIDV4,
-    },
-    label: DataTypes.STRING,
-    note: DataTypes.STRING
+    username: DataTypes.STRING,
+    password: DataTypes.STRING
   },
   {
     sequelize,
@@ -22,4 +19,4 @@ Project.init(
   }
 );
 
-module.exports = Project;
+module.exports = User;
